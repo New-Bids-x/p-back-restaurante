@@ -7,6 +7,14 @@ use App\Http\Controllers\VentaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PedidoController;
 
+use App\Http\Controllers\AuthController;
+
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
 Route::get('/administradores', [AdministradorController::class, 'index']);
 Route::post('/administradores', [AdministradorController::class, 'store']);
 Route::get('/administradores/{id}', [AdministradorController::class, 'show']);
